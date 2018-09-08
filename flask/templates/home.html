@@ -1,0 +1,33 @@
+<html>
+  <body>
+    <h1>Add movies</h1>
+    <form method="POST" action="/">
+      <input type="text" placeholder="Title" name="title"><br><br>
+      <input type="text" placeholder="Location"name="location"><br><br>
+      <input type="text" placeholder="Time"name="time"><br><br>
+      <input type="submit" value="Add Movie">
+    </form>
+  </body>
+  <h1>Movies list</h1>
+        <table>
+      {% for movie in movies %}
+        <tr>
+          <td>
+            <form method="POST" action="./update" style="display: inline">
+              <input type="hidden" value="{{movie.title}}" name="oldtitle">
+              <input type="text" value="{{movie.title}}" name="newtitle">
+              <input type="text" value="{{movie.location}}" name="location">
+              <input type="text" value="{{movie.time}}" name="time">
+              <input type="submit" value="Update">
+            </form>
+          </td>
+          <td>
+            <form method="POST" action="./delete" style="display: inline">
+              <input type="hidden" value="{{movie.title}}" name="title">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+</html>
